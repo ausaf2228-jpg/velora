@@ -52,7 +52,7 @@ export default function PropertyDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://65.0.139.121:8080";
+
   useEffect(() => {
     if (!propertyId) return;
 
@@ -60,6 +60,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://65.0.139.121:8080";
       try {
         setLoading(true);
         setError(null);
+        // Assuming your rewrite is set up to proxy /api to the backend
         const res = await fetch(`/api/properties/${propertyId}`);
         if (!res.ok) {
           throw new Error(`Server returned status ${res.status}`);
@@ -165,70 +166,60 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://65.0.139.121:8080";
           </div>
         </div>
 
-        {/* Main Image Carousel */}
-        {/* Gallery Section */}
-<div className="space-y-3">
-  {/* Main Image Frame with Controlled Height */}
-  <div className="relative w-full max-h-[420px] h-[340px] md:h-[400px] rounded-sm overflow-hidden border border-[#c8a45c]/25 bg-[#030d0b]">
-    {/* Blurred Backdrop to gracefully fill any non-standard image aspect ratios */}
-    <img
-      src={images[activeImageIndex]}
-      alt="Backdrop blur"
-      className="absolute inset-0 w-full h-full object-cover blur-lg opacity-25 scale-110"
-    />
+        {/* Gallery Section - True Native Image Dimensions */}
+        <div className="space-y-3">
+          <div className="relative w-full min-h-[350px] max-h-[550px] py-4 rounded-lg overflow-hidden border border-[#c8a45c]/30 bg-[#020908] flex items-center justify-center shadow-2xl">
+            <img
+              src={images[activeImageIndex]}
+              alt={`${property.title} - view ${activeImageIndex + 1}`}
+              // object-none displays image at original size, no scaling. 
+              // max constraints prevent overflow on small screens.
+              className="max-w-full max-h-[500px] w-auto h-auto object-none rounded shadow-md"
+            />
 
-    {/* Primary Crisp Center Image */}
-    <img
-      src={images[activeImageIndex]}
-      alt={`${property.title} - view ${activeImageIndex + 1}`}
-      className="relative z-10 w-full h-full object-contain md:object-cover transition-all duration-300 mx-auto"
-    />
-    
-    <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#051411]/70 via-transparent to-transparent pointer-events-none" />
+            {/* Carousel Controls */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={() => setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-[#051411]/80 hover:bg-[#0a221d] hover:scale-105 border border-[#c8a45c]/50 text-[#f7e7ce] backdrop-blur-md transition-all cursor-pointer"
+                  aria-label="Previous"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => setActiveImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2.5 rounded-full bg-[#051411]/80 hover:bg-[#0a221d] hover:scale-105 border border-[#c8a45c]/50 text-[#f7e7ce] backdrop-blur-md transition-all cursor-pointer"
+                  aria-label="Next"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+                <span className="absolute bottom-4 right-4 z-20 bg-[#051411]/90 backdrop-blur-sm border border-[#c8a45c]/40 text-[#f7e7ce] font-mono text-xs px-3 py-1 rounded-sm">
+                  {activeImageIndex + 1} / {images.length}
+                </span>
+              </>
+            )}
+          </div>
 
-    {/* Carousel Arrows */}
-    {images.length > 1 && (
-      <>
-        <button
-          onClick={() => setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
-          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-[#051411]/85 hover:bg-[#0a221d] border border-[#c8a45c]/40 text-[#f7e7ce] transition-all"
-          aria-label="Previous"
-        >
-          <ChevronLeft className="w-4 h-4" />
-        </button>
-        <button
-          onClick={() => setActiveImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))}
-          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-[#051411]/85 hover:bg-[#0a221d] border border-[#c8a45c]/40 text-[#f7e7ce] transition-all"
-          aria-label="Next"
-        >
-          <ChevronRight className="w-4 h-4" />
-        </button>
-        <span className="absolute bottom-3 right-3 z-20 bg-[#051411]/90 border border-[#c8a45c]/30 text-slate-300 text-[11px] px-2.5 py-0.5 rounded-sm">
-          {activeImageIndex + 1} / {images.length}
-        </span>
-      </>
-    )}
-  </div>
-
-  {/* Compact Thumbnail Strip */}
-  {images.length > 1 && (
-    <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-thin">
-      {images.map((img, idx) => (
-        <button
-          key={idx}
-          onClick={() => setActiveImageIndex(idx)}
-          className={`relative shrink-0 w-20 h-14 md:w-24 md:h-16 rounded-sm overflow-hidden border transition-all ${
-            activeImageIndex === idx
-              ? "border-[#c8a45c] opacity-100 scale-100 shadow-[0_0_10px_rgba(200,164,92,0.3)]"
-              : "border-transparent opacity-40 hover:opacity-75"
-          }`}
-        >
-          <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
-        </button>
-      ))}
-    </div>
-  )}
-</div>
+          {/* Thumbnails */}
+          {images.length > 1 && (
+            <div className="flex gap-3 overflow-x-auto py-2 scrollbar-thin">
+              {images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveImageIndex(idx)}
+                  className={`relative shrink-0 w-24 h-16 md:w-32 md:h-20 rounded-md overflow-hidden border-2 transition-all cursor-pointer ${
+                    activeImageIndex === idx
+                      ? "border-[#c8a45c] ring-2 ring-[#c8a45c]/40 opacity-100 scale-100 shadow-[0_0_12px_rgba(200,164,92,0.4)]"
+                      : "border-transparent opacity-50 hover:opacity-90"
+                  }`}
+                >
+                  <img src={img} alt="Thumbnail" className="w-full h-full object-cover object-center" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Content Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -349,11 +340,11 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://65.0.139.121:8080";
                 </a>
 
                 <a
-                  href="tel:+918073547234"
+                  href={`tel:${WHATSAPP_NUMBER}`}
                   className="w-full border border-[#c8a45c]/40 text-[#f7e7ce] hover:bg-[#c8a45c]/10 font-medium py-3 px-4 rounded-sm transition-all text-xs tracking-wider flex items-center justify-center gap-2"
                 >
                   <Phone className="w-3.5 h-3.5 text-[#c8a45c]" />
-                  <span>Call +91 8073547234</span>
+                  <span>Call Advisory Team</span>
                 </a>
               </div>
 
