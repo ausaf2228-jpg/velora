@@ -182,10 +182,12 @@ export default function Home() {
             </p>
           </div>
 
-          <button className="border border-[#c8a45c] text-[#f7e7ce] hover:bg-[#c8a45c] hover:text-[#051411] px-6 py-3 rounded-sm transition-all duration-300 text-xs tracking-wider flex items-center space-x-2 shrink-0">
-            <span>Explore Tourism</span>
-            <ChevronRight className="w-4 h-4" />
-          </button>
+         <Link href="/tourism">
+  <button className="border border-[#c8a45c] text-[#f7e7ce] hover:bg-[#c8a45c] hover:text-[#051411] px-6 py-3 rounded-sm transition-all duration-300 text-xs tracking-wider flex items-center space-x-2 shrink-0 cursor-pointer">
+    <span>Explore Tourism</span>
+    <ChevronRight className="w-4 h-4" />
+  </button>
+</Link>
         </div>
       </section>
 
