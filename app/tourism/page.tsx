@@ -16,6 +16,7 @@ import {
   Car,
   Headphones,
   ArrowRight,
+  ArrowLeft,
   MessageSquare,
   Mail,
   Phone,
@@ -55,7 +56,7 @@ export default function TourismPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = `*New Tourism & Investment Enquiry*\nName: ${formData.fullName}\nEmail: ${formData.email}\nWhatsApp: ${formData.whatsapp}\nCountry: ${formData.country}\nLooking for: ${formData.intent}\nBudget: ${formData.budget}\nDate: ${formData.date}\nNote: ${formData.message}`;
-    window.open(`https://wa.me/971501234567?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/971503784656?text=${encodeURIComponent(msg)}`, "_blank");
     setIsModalOpen(false);
   };
 
@@ -88,7 +89,7 @@ export default function TourismPage() {
                 <span>Real Estate</span>
               </Link>
               <a
-                href="https://wa.me/971501234567"
+                href="https://wa.me/971503784656"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden sm:flex border border-[#c8a45c]/60 text-[#f7e7ce] hover:bg-[#c8a45c]/10 text-xs px-3 py-2 rounded-sm transition-all items-center gap-1.5"
@@ -120,7 +121,6 @@ export default function TourismPage() {
       </header>
 
       {/* ================= TAB 1: HOME ================= */}
-     {/* ================= TAB 1: HOME ================= */}
       {activeTab === "home" && (
         <main className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 py-8 sm:py-12 space-y-12 sm:space-y-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -145,7 +145,7 @@ export default function TourismPage() {
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <a
-                  href="https://wa.me/971501234567"
+                  href="https://wa.me/971503784656"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="border border-[#c8a45c]/40 text-[#f7e7ce] hover:bg-[#c8a45c]/10 text-xs px-4 py-3 rounded-sm transition-all flex items-center gap-1.5"
@@ -275,7 +275,16 @@ export default function TourismPage() {
 
       {/* ================= TAB 2: ITINERARY ================= */}
       {activeTab === "itinerary" && (
-        <main className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 py-10 space-y-10">
+        <main className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 py-8 sm:py-10 space-y-8">
+          {/* Section Back Link */}
+          <button
+            onClick={() => navigateTo("home")}
+            className="inline-flex items-center gap-2 text-xs text-[#c8a45c] hover:text-[#f7e7ce] transition-colors cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Tourism Overview</span>
+          </button>
+
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#c8a45c]/15 pb-4">
             <div className="space-y-1">
               <h1 className="font-serif text-3xl sm:text-4xl text-[#f7e7ce]">4-Day Itinerary</h1>
@@ -283,12 +292,6 @@ export default function TourismPage() {
                 <span>🇬🇧</span> Exclusively for UK Investors
               </p>
             </div>
-            <button
-              onClick={() => navigateTo("home")}
-              className="text-xs text-slate-400 hover:text-[#c8a45c] self-start sm:self-auto cursor-pointer"
-            >
-              ← Back to Overview
-            </button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -400,7 +403,16 @@ export default function TourismPage() {
 
       {/* ================= TAB 3: INVESTOR EXPERIENCE ================= */}
       {activeTab === "investor" && (
-        <main className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 py-10 space-y-10">
+        <main className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 py-8 sm:py-10 space-y-8">
+          {/* Section Back Link */}
+          <button
+            onClick={() => navigateTo("home")}
+            className="inline-flex items-center gap-2 text-xs text-[#c8a45c] hover:text-[#f7e7ce] transition-colors cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Tourism Overview</span>
+          </button>
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-6 space-y-4">
               <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#f7e7ce] leading-tight">
@@ -465,7 +477,18 @@ export default function TourismPage() {
 
       {/* ================= TAB 4: ABOUT DUBAI ================= */}
       {activeTab === "about" && (
-        <main className="max-w-4xl mx-auto px-4 sm:px-8 py-10 space-y-8 text-center">
+        <main className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-10 space-y-8 text-center">
+          {/* Section Back Link */}
+          <div className="text-left">
+            <button
+              onClick={() => navigateTo("home")}
+              className="inline-flex items-center gap-2 text-xs text-[#c8a45c] hover:text-[#f7e7ce] transition-colors cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to Tourism Overview</span>
+            </button>
+          </div>
+
           <h1 className="font-serif text-3xl sm:text-4xl text-[#f7e7ce]">The World's #1 Investment Destination</h1>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             Dubai provides 0% tax on capital gains and rental income, 10-year Golden Visa eligibility for property investors, and world-class safety.
@@ -489,7 +512,18 @@ export default function TourismPage() {
 
       {/* ================= TAB 5: CONTACT ================= */}
       {activeTab === "contact" && (
-        <main className="max-w-4xl mx-auto px-4 sm:px-8 py-10 space-y-8 text-center">
+        <main className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-10 space-y-8 text-center">
+          {/* Section Back Link */}
+          <div className="text-left">
+            <button
+              onClick={() => navigateTo("home")}
+              className="inline-flex items-center gap-2 text-xs text-[#c8a45c] hover:text-[#f7e7ce] transition-colors cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to Tourism Overview</span>
+            </button>
+          </div>
+
           <div className="space-y-2">
             <h1 className="font-serif text-3xl sm:text-4xl text-[#f7e7ce]">Contact Us</h1>
             <p className="text-xs text-slate-400">We are here to help you plan your Dubai investment journey.</p>
@@ -497,7 +531,7 @@ export default function TourismPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
             <a
-              href="https://wa.me/971501234567"
+              href="https://wa.me/971503784656"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#05211c]/60 border border-[#c8a45c]/30 hover:border-[#c8a45c] p-6 rounded-sm space-y-2 transition-all"
@@ -558,10 +592,10 @@ export default function TourismPage() {
               <Mail className="w-3.5 h-3.5 text-[#c8a45c]" />
               <span>info@veloraheightstourism.com</span>
             </div>
-            <div className="flex items-center gap-1.5">
+            <a href="tel:+971503784656" className="flex items-center gap-1.5 hover:text-[#c8a45c] transition-colors">
               <Phone className="w-3.5 h-3.5 text-[#c8a45c]" />
-              <span>+971 50 123 4567</span>
-            </div>
+              <span>+971 50 378 4656</span>
+            </a>
           </div>
 
           <p className="text-[10px] text-slate-500">
@@ -576,7 +610,7 @@ export default function TourismPage() {
           <div className="relative w-full max-w-lg bg-[#05211c] border border-[#c8a45c]/40 rounded-lg p-6 space-y-4 shadow-2xl my-8">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-[#f7e7ce] transition-colors"
+              className="absolute top-4 right-4 text-slate-400 hover:text-[#f7e7ce] transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
