@@ -225,7 +225,7 @@ const handleAddCustomAmenity = () => {
       });
 
       // Point directly to Spring Boot backend
-      const response = await fetch(`${API_BASE}/api/properties`, {
+      const response = await fetch(`/api/properties`, {
   method: "POST",
   body: formPayload,
 });

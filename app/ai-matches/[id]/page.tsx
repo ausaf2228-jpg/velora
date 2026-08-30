@@ -52,7 +52,7 @@ export default function PropertyDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://65.0.139.121:8080";
   useEffect(() => {
     if (!propertyId) return;
 
@@ -60,7 +60,7 @@ export default function PropertyDetailPage() {
       try {
         setLoading(true);
         setError(null);
-        const res = await fetch(`http://localhost:8080/api/properties/${propertyId}`);
+        const res = await fetch(`/api/properties/${propertyId}`);
         if (!res.ok) {
           throw new Error(`Server returned status ${res.status}`);
         }

@@ -57,7 +57,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://65.0.139.121:8080";
   const fetchProperties = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE}/api/properties`);
+      const res = await fetch(`/api/properties`);
       if (!res.ok) {
         throw new Error("Failed to fetch property portfolio.");
       }
