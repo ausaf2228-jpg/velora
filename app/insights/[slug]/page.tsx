@@ -33,7 +33,7 @@ export default function InsightDetailPage() {
     );
   }
 
-  const whatsappUrl = `https://wa.me/918073547234?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/971503784656?text=${encodeURIComponent(
     `Hello Velora Heights, I read your insight on "${post.title}" and would like to discuss property advisory opportunities.`
   )}`;
 

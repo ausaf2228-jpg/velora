@@ -38,7 +38,7 @@ interface Property {
   imageUrls: string[];
 }
 
-const WHATSAPP_NUMBER = "918073547234";
+const WHATSAPP_NUMBER = "971503784656";
 
 export default function AIMatchesPage() {
   const [properties, setProperties] = useState<Property[]>([]);

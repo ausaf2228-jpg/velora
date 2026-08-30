@@ -15,7 +15,7 @@ import {
   MapPin
 } from "lucide-react";
 
-const WHATSAPP_URL = "https://wa.me/918073547234?text=Hello%20Velora%20Heights,%20I%20would%20like%20to%20know%20more%20about%20your%20advisory%20services.";
+const WHATSAPP_URL = "https://wa.me/971503784656?text=Hello%20Velora%20Heights,%20I%20would%20like%20to%20know%20more%20about%20your%20advisory%20services.";
 
 export default function AboutPage() {
   return (

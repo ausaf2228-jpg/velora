@@ -17,7 +17,7 @@ import {
 import Link from 'next/link';
 import { INSIGHTS_DATA } from './data/insights';
 
-const whatsappUrl = "https://wa.me/918073547234?text=Hello%20Velora%20Heights,%20I%20would%20like%20to%20inquire%20about%20property%20investment%20opportunities.";
+const whatsappUrl = "https://wa.me/971503784656?text=Hello%20Velora%20Heights,%20I%20would%20like%20to%20inquire%20about%20property%20investment%20opportunities.";
 
 export default function Home() {
   return (
@@ -27,9 +27,13 @@ export default function Home() {
         <span className="tracking-widest uppercase text-[10px] text-[#c8a45c]/80">Dubai Premier Real Estate Advisory</span>
         <div className="flex items-center space-x-6">
           <span className="flex items-center gap-1.5"><MapPin className="w-3 h-3 text-[#c8a45c]" /> The Opus, Business Bay, Dubai</span>
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-[#c8a45c] transition-colors">
-            <Phone className="w-3 h-3 text-[#c8a45c]" /> +91 8073547234
-          </a>
+          <a 
+  href="tel:+971503784656" 
+  className="flex items-center gap-1.5 hover:text-[#c8a45c] transition-colors"
+>
+  <Phone className="w-3 h-3 text-[#c8a45c]" />
+  <span>+971 50 378 4656</span>
+</a>
         </div>
       </div>
 
@@ -49,7 +53,7 @@ export default function Home() {
           <Link href="/" className="text-[#c8a45c] border-b border-[#c8a45c] pb-1 font-semibold">Home</Link>
           <Link href="/ai-matches" className="hover:text-[#c8a45c] transition-colors duration-200">View Properties</Link>
           <a href="/insights" className="hover:text-[#c8a45c] transition-colors duration-200">Market Insights</a>
-          <a href="#" className="hover:text-[#c8a45c] transition-colors duration-200">Tourism</a>
+          <a href="/tourism" className="hover:text-[#c8a45c] transition-colors duration-200">Tourism</a>
 <Link href="/about" className="hover:text-[#c8a45c] transition-colors duration-200">
   About
 </Link>        </div>
@@ -249,8 +253,8 @@ export default function Home() {
           </div>
           <div>
             <h4 className="text-slate-200 font-medium uppercase tracking-wider mb-3 text-[11px]">Direct Contact</h4>
-            <p className="font-light">hello@veloraheights.ae</p>
-            <p className="font-light">+91 8073547234</p>
+            <p className="font-light">muhammedhuzaif1@gmail.com</p>
+<p className="font-light">+971 50 378 4656</p>
           </div>
           <div>
             <h4 className="text-slate-200 font-medium uppercase tracking-wider mb-3 text-[11px]">Legal</h4>
