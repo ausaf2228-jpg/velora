@@ -276,14 +276,16 @@ export default function TourismPage() {
       {/* ================= TAB 2: ITINERARY ================= */}
       {activeTab === "itinerary" && (
         <main className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 py-8 sm:py-10 space-y-8">
-          {/* Section Back Link */}
-          <button
-            onClick={() => navigateTo("home")}
-            className="inline-flex items-center gap-2 text-xs text-[#c8a45c] hover:text-[#f7e7ce] transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Tourism Overview</span>
-          </button>
+          {/* Highlighted Back Button */}
+          <div>
+            <button
+              onClick={() => navigateTo("home")}
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#031512] gold-gradient-bg px-4 py-2 rounded-sm hover:brightness-110 transition-all cursor-pointer shadow-[0_0_15px_rgba(200,164,92,0.35)]"
+            >
+              <ArrowLeft className="w-4 h-4 text-[#031512]" />
+              <span>Back to Tourism Overview</span>
+            </button>
+          </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#c8a45c]/15 pb-4">
             <div className="space-y-1">
@@ -404,14 +406,16 @@ export default function TourismPage() {
       {/* ================= TAB 3: INVESTOR EXPERIENCE ================= */}
       {activeTab === "investor" && (
         <main className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14 py-8 sm:py-10 space-y-8">
-          {/* Section Back Link */}
-          <button
-            onClick={() => navigateTo("home")}
-            className="inline-flex items-center gap-2 text-xs text-[#c8a45c] hover:text-[#f7e7ce] transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Tourism Overview</span>
-          </button>
+          {/* Highlighted Back Button */}
+          <div>
+            <button
+              onClick={() => navigateTo("home")}
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#031512] gold-gradient-bg px-4 py-2 rounded-sm hover:brightness-110 transition-all cursor-pointer shadow-[0_0_15px_rgba(200,164,92,0.35)]"
+            >
+              <ArrowLeft className="w-4 h-4 text-[#031512]" />
+              <span>Back to Tourism Overview</span>
+            </button>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-6 space-y-4">
@@ -478,13 +482,13 @@ export default function TourismPage() {
       {/* ================= TAB 4: ABOUT DUBAI ================= */}
       {activeTab === "about" && (
         <main className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-10 space-y-8 text-center">
-          {/* Section Back Link */}
+          {/* Highlighted Back Button */}
           <div className="text-left">
             <button
               onClick={() => navigateTo("home")}
-              className="inline-flex items-center gap-2 text-xs text-[#c8a45c] hover:text-[#f7e7ce] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#031512] gold-gradient-bg px-4 py-2 rounded-sm hover:brightness-110 transition-all cursor-pointer shadow-[0_0_15px_rgba(200,164,92,0.35)]"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 text-[#031512]" />
               <span>Back to Tourism Overview</span>
             </button>
           </div>
@@ -513,13 +517,13 @@ export default function TourismPage() {
       {/* ================= TAB 5: CONTACT ================= */}
       {activeTab === "contact" && (
         <main className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-10 space-y-8 text-center">
-          {/* Section Back Link */}
+          {/* Highlighted Back Button */}
           <div className="text-left">
             <button
               onClick={() => navigateTo("home")}
-              className="inline-flex items-center gap-2 text-xs text-[#c8a45c] hover:text-[#f7e7ce] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#031512] gold-gradient-bg px-4 py-2 rounded-sm hover:brightness-110 transition-all cursor-pointer shadow-[0_0_15px_rgba(200,164,92,0.35)]"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 text-[#031512]" />
               <span>Back to Tourism Overview</span>
             </button>
           </div>
