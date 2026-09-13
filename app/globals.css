@@ -2,73 +2,30 @@
 
 :root {
   --bg-dark: #0D2B22;
-  --bg-card: #0D2B22;
-  --bg-glass: rgba(13, 43, 34, 0.75);
+  --bg-card: #09211A;
   --gold-primary: #C8A34A;
-  --gold-light: #dfb975;
-  --gold-accent: #C8A34A;
-  --border-gold: rgba(200, 163, 74, 0.25);
-  --border-gold-glow: rgba(200, 163, 74, 0.4);
-}
-
-.text-gradient-gold {
-  background: linear-gradient(135deg, #f7e7ce 0%, #C8A34A 50%, #9e7f32 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.bg-gradient-gold {
-  background: linear-gradient(135deg, #f7e7ce 0%, #C8A34A 50%, #9e7f32 100%);
-}
-
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.animate-shimmer {
-  animation: shimmer 2s infinite;
+  --gold-light: #F7E7CE;
 }
 
 body {
-  background-color: var(--bg-dark);
-  color: #f1f5f9;
-  font-family: var(--font-sans), system-ui, sans-serif;
+  background-color: #0D2B22;
+  color: #F1F5F9;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #f7e7ce 0%, #C8A34A 50%, #9e7f32 100%);
+  background: linear-gradient(135deg, #FFF0D0 0%, #E5C578 50%, #C8A34A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: #E5C578; /* Fallback */
 }
 
 .gold-gradient-bg {
-  background: linear-gradient(135deg, #e4c478 0%, #C8A34A 50%, #9e7f32 100%);
+  background: linear-gradient(135deg, #E5C578 0%, #C8A34A 100%);
 }
 
 .glass-panel {
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0D2B22;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: rgba(9, 33, 26, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
