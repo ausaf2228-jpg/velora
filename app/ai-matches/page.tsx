@@ -87,20 +87,20 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://65.0.139.121:8080";
   return (
     <div className="min-h-screen bg-[#051411] text-slate-100 font-sans selection:bg-[#c8a45c] selection:text-[#051411] pb-24">
       {/* Top Header */}
-      <div className="border-b border-[#c8a45c]/20 bg-[#030d0b] px-6 lg:px-12 py-4 flex items-center justify-between sticky top-0 z-40 backdrop-blur-md">
-        <Link href="/" className="inline-flex items-center space-x-2 text-xs text-[#dfb975] hover:text-[#f7e7ce] transition-colors">
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Home</span>
-        </Link>
-        <div className="flex items-center space-x-4">
-          <Link 
-            href="/admin/properties/add" 
-            className="text-[10px] uppercase tracking-wider text-[#c8a45c] border border-[#c8a45c]/30 px-3 py-1.5 rounded-sm hover:bg-[#c8a45c]/10 transition-colors"
-          >
-            + Add Listing
-          </Link>
-        </div>
-      </div>
+<div className="border-b border-[#C8A34A]/20 bg-[#091e18] px-6 lg:px-12 py-4 flex items-center justify-between sticky top-0 z-40 backdrop-blur-md">
+  <Link href="/real-estate" className="inline-flex items-center space-x-2 text-xs text-[#dfb975] hover:text-[#f7e7ce] transition-colors">
+    <ArrowLeft className="w-4 h-4" />
+    <span>Back to Real Estate</span>
+  </Link>
+  <div className="flex items-center space-x-4">
+    <Link 
+      href="/admin/property/add"
+      className="text-[10px] uppercase tracking-wider text-[#C8A34A] border border-[#C8A34A]/30 px-3 py-1.5 rounded-sm hover:bg-[#C8A34A]/10 transition-colors"
+    >
+      + Add Listing
+    </Link>
+  </div>
+</div>
 
       <div className="max-w-7xl mx-auto px-6 pt-10 space-y-10">
         {/* Page Banner */}

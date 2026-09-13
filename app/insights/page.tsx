@@ -17,13 +17,14 @@ export default function InsightsListingPage() {
   return (
     <div className="min-h-screen bg-[#051411] text-slate-100 font-sans selection:bg-[#c8a45c] selection:text-[#051411] pb-24">
       {/* Top Bar */}
-      <div className="border-b border-[#c8a45c]/20 bg-[#030d0b] px-6 lg:px-12 py-4 flex items-center justify-between sticky top-0 z-40 backdrop-blur-md">
-        <Link href="/" className="inline-flex items-center space-x-2 text-xs text-[#dfb975] hover:text-[#f7e7ce] transition-colors">
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Home</span>
-        </Link>
-        <span className="text-[10px] uppercase tracking-[0.25em] text-[#c8a45c]">Velora Research & Intelligence</span>
-      </div>
+   {/* Top Bar */}
+<div className="border-b border-[#C8A34A]/20 bg-[#091e18] px-6 lg:px-12 py-4 flex items-center justify-between sticky top-0 z-40 backdrop-blur-md">
+  <Link href="/real-estate" className="inline-flex items-center space-x-2 text-xs text-[#dfb975] hover:text-[#f7e7ce] transition-colors">
+    <ArrowLeft className="w-4 h-4" />
+    <span>Back to Real Estate</span>
+  </Link>
+  <span className="text-[10px] uppercase tracking-[0.25em] text-[#C8A34A]">Velora Research & Intelligence</span>
+</div>
 
       <div className="max-w-7xl mx-auto px-6 pt-12 space-y-12">
         {/* Banner */}

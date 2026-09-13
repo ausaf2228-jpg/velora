@@ -1,23 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --bg-dark: #051411;
-  --bg-card: #0a221d;
-  --bg-glass: rgba(10, 34, 29, 0.65);
-  --gold-primary: #d4af37;
-  --gold-light: #f3e5ab;
-  --gold-accent: #c8a45c;
-  --border-gold: rgba(200, 164, 92, 0.25);
-  --border-gold-glow: rgba(212, 175, 55, 0.4);
+  --bg-dark: #0D2B22;
+  --bg-card: #0D2B22;
+  --bg-glass: rgba(13, 43, 34, 0.75);
+  --gold-primary: #C8A34A;
+  --gold-light: #dfb975;
+  --gold-accent: #C8A34A;
+  --border-gold: rgba(200, 163, 74, 0.25);
+  --border-gold-glow: rgba(200, 163, 74, 0.4);
 }
+
 .text-gradient-gold {
-  background: linear-gradient(135deg, #f7e7ce 0%, #dfb975 50%, #ba8e48 100%);
+  background: linear-gradient(135deg, #f7e7ce 0%, #C8A34A 50%, #9e7f32 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .bg-gradient-gold {
-  background: linear-gradient(135deg, #f7e7ce 0%, #dfb975 50%, #ba8e48 100%);
+  background: linear-gradient(135deg, #f7e7ce 0%, #C8A34A 50%, #9e7f32 100%);
 }
 
 @keyframes shimmer {
@@ -29,6 +30,7 @@
 .animate-shimmer {
   animation: shimmer 2s infinite;
 }
+
 body {
   background-color: var(--bg-dark);
   color: #f1f5f9;
@@ -36,13 +38,13 @@ body {
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #f7e7ce 0%, #c8a45c 50%, #99742e 100%);
+  background: linear-gradient(135deg, #f7e7ce 0%, #C8A34A 50%, #9e7f32 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gold-gradient-bg {
-  background: linear-gradient(135deg, #e4c478 0%, #c8a45c 50%, #94712b 100%);
+  background: linear-gradient(135deg, #e4c478 0%, #C8A34A 50%, #9e7f32 100%);
 }
 
 .glass-panel {
@@ -60,7 +62,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0D2B22;
     --foreground: #ededed;
   }
 }
