@@ -26,7 +26,7 @@ export default function RootLandingPage() {
       {/* Center Branding / Logo */}
       <div className="relative z-10 text-center space-y-2 py-4 my-auto flex flex-col items-center">
         <img
-          src="/logo.png"
+          src="/logom.png"
           alt="Velora Heights Logo"
           className="h-24 sm:h-32 md:h-40 w-auto object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.5)]"
         />

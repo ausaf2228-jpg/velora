@@ -123,7 +123,7 @@ export default function RealEstatePage() {
                 className="border border-[#C8A34A]/80 text-[#F7E7CE] bg-[#061813]/80 hover:bg-[#C8A34A] hover:text-[#0D2B22] px-8 py-3.5 rounded-sm transition-all flex items-center justify-center space-x-3 text-xs uppercase tracking-wider font-semibold shadow-md cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4" />
-                <span>Speak on WhatsApp</span>
+                <span>WhatsApp</span>
               </a>
             </div>
           </div>

@@ -64,13 +64,37 @@ export default function TourismPage() {
       <LuxuryBackground />
 
       <div className="relative z-10 flex flex-col min-h-screen">
-        {/* ================= TOP HEADER ================= */}
+        {/* ================= TOP UTILITY BAR ================= */}
+        <div className="bg-[#061813] border-b border-[#C8A34A]/25 py-2.5 px-4 sm:px-8 lg:px-14 text-xs text-slate-300 flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <Link href="/" className="text-[11px] text-[#E5C578] hover:text-[#FFF] font-semibold uppercase tracking-wider">
+              ← Switch Experience
+            </Link>
+            <span className="tracking-widest uppercase text-[10px] text-[#C8A34A] border-l border-[#C8A34A]/30 pl-4 hidden sm:inline">
+              Dubai Premier Investor Tourism & Lifestyle
+            </span>
+          </div>
+          <div className="flex items-center space-x-6 text-[11px]">
+            <span className="flex items-center gap-1.5 text-slate-200 hidden md:flex">
+              <MapPin className="w-3.5 h-3.5 text-[#C8A34A]" /> The Opus, Business Bay, Dubai
+            </span>
+            <a 
+              href="tel:+971503784656" 
+              className="flex items-center gap-1.5 text-[#F7E7CE] hover:text-[#C8A34A] transition-colors"
+            >
+              <Phone className="w-3.5 h-3.5 text-[#C8A34A]" />
+              <span>+971 50 378 4656</span>
+            </a>
+          </div>
+        </div>
+
+        {/* ================= UNIVERSAL TOP HEADER ================= */}
         <header className="border-b border-[#C8A34A]/25 bg-[#061813]/95 sticky top-0 z-40 backdrop-blur-md px-4 sm:px-8 lg:px-14 py-3">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div className="flex items-center justify-between gap-4">
               <button onClick={() => navigateTo("home")} className="flex items-center cursor-pointer">
                 <img 
-                  src="/logo.png" 
+                  src="/logot.png" 
                   alt="Velora Heights Tourism" 
                   className="h-10 sm:h-12 w-auto object-contain brightness-110"
                 />
@@ -192,7 +216,7 @@ export default function TourismPage() {
               </div>
             </div>
 
-          {/* ================= WHY UK INVESTORS CHOOSE THIS EXPERIENCE ================= */}
+            {/* ================= WHY UK INVESTORS CHOOSE THIS EXPERIENCE ================= */}
             <div className="space-y-10 text-center pt-10 border-t border-[#C8A34A]/25">
               <div className="space-y-1">
                 <h2 className="font-serif text-3xl sm:text-4xl text-[#F7E7CE] font-normal leading-tight">
