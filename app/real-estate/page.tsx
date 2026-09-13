@@ -98,10 +98,7 @@ export default function RealEstatePage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0D2B22] via-transparent to-transparent opacity-90" />
 
           <div className="relative z-10 max-w-3xl space-y-7 my-16">
-            <div className="inline-flex items-center space-x-2 bg-[#061813]/90 border border-[#C8A34A]/50 px-3.5 py-1.5 rounded-full shadow-lg">
-              <Sparkles className="w-3.5 h-3.5 text-[#E5C578]" />
-              <span className="text-xs text-[#F7E7CE] tracking-wide font-medium">AI-Powered Portfolio Matching</span>
-            </div>
+            
 
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif leading-[1.15] text-[#FFF] tracking-tight">
               Invest in Dubai <br />
@@ -301,4 +298,4 @@ export default function RealEstatePage() {
       </div>
     </div>
   );
-}
+}                                           
