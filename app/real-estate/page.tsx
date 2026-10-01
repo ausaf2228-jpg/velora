@@ -37,7 +37,7 @@ export default function RealEstatePage() {
           </div>
           <div className="flex items-center space-x-6 text-[11px]">
             <span className="flex items-center gap-1.5 text-slate-200">
-              <MapPin className="w-3.5 h-3.5 text-[#C8A34A]" />Downtown,Dubai,UAE
+              <MapPin className="w-3.5 h-3.5 text-[#C8A34A]" />Dubai,UAE
             </span>
             <a 
               href="tel:+971585844656" 
@@ -270,7 +270,7 @@ export default function RealEstatePage() {
             </div>
             <div>
               <h4 className="text-[#F7E7CE] font-bold uppercase tracking-wider mb-3 text-[11px]">Office</h4>
-              <p className="font-light">Downtown,Dubai,UAE</p>
+              <p className="font-light">Dubai,UAE</p>
             </div>
             <div>
               <h4 className="text-[#F7E7CE] font-bold uppercase tracking-wider mb-3 text-[11px]">Direct Contact</h4>

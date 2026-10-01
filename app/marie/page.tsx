@@ -681,7 +681,7 @@ export default function LandingPage1() {
             <div className="space-y-1.5 pt-4 md:pt-0">
               <span className="text-xs uppercase tracking-wider text-[#F7E7CE] font-semibold block">Location</span>
               <p className="text-[11px] text-slate-300 font-light leading-relaxed">
-                Downtown,Dubai,UAE
+                Dubai,UAE
               </p>
             </div>
             <div className="space-y-1.5 pt-4 md:pt-0">
