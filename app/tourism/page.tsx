@@ -29,12 +29,16 @@ import {
   Compass,
   Award,
   Handshake,
+  CheckCircle2,
+  Loader2,
 } from "lucide-react";
 import LuxuryBackground from "@/components/LuxuryBackground";
 
 export default function TourismPage() {
   const [activeTab, setActiveTab] = useState<"home" | "itinerary" | "investor" | "about" | "contact">("home");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -51,11 +55,50 @@ export default function TourismPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const msg = `*New Tourism & Investment Enquiry*\nName: ${formData.fullName}\nEmail: ${formData.email}\nWhatsApp: ${formData.whatsapp}\nCountry: ${formData.country}\nLooking for: ${formData.intent}\nBudget: ${formData.budget}\nDate: ${formData.date}\nNote: ${formData.message}`;
-    window.open(`https://wa.me/971503784656?text=${encodeURIComponent(msg)}`, "_blank");
+  const handleModalClose = () => {
     setIsModalOpen(false);
+    setFormSubmitted(false);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // Direct call to your Next.js Google Sheet proxy route
+      const res = await fetch("/api/webinar-register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          whatsapp: formData.whatsapp,
+          country: formData.country,
+          investmentBudget: `${formData.budget} (${formData.intent}${formData.date ? `, Date: ${formData.date}` : ""}${formData.message ? `, Note: ${formData.message}` : ""})`,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to record enquiry");
+      }
+
+      setFormSubmitted(true);
+      setFormData({
+        fullName: "",
+        email: "",
+        whatsapp: "",
+        country: "United Kingdom",
+        intent: "Luxury Villa / Penthouse",
+        budget: "£500k - £1M",
+        date: "",
+        message: "",
+      });
+    } catch (err) {
+      console.error("Submission failed:", err);
+      alert("Submission encountered an issue. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,22 +108,29 @@ export default function TourismPage() {
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* ================= TOP UTILITY BAR ================= */}
-        <div className="bg-[#061813] border-b border-[#C8A34A]/25 py-2.5 px-4 sm:px-8 lg:px-14 text-xs text-slate-300 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <Link href="/" className="text-[11px] text-[#E5C578] hover:text-[#FFF] font-semibold uppercase tracking-wider">
-              ← Switch Experience
+      {/* ================= TOP UTILITY BAR ================= */}
+        <div className="bg-[#040e0b]/90 border-b border-[#C8A34A]/20 py-2 px-4 sm:px-8 lg:px-14 text-xs text-slate-300 flex justify-between items-center relative z-50">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/"
+              className="text-[11px] text-[#E5C578] hover:text-white font-semibold uppercase tracking-wider transition-colors flex items-center gap-1"
+            >
+              <span>←</span>
+              <span>Switch Experience</span>
             </Link>
-            <span className="tracking-widest uppercase text-[10px] text-[#C8A34A] border-l border-[#C8A34A]/30 pl-4 hidden sm:inline">
+            <span className="text-[#C8A34A]/40 font-light hidden sm:inline">|</span>
+            <span className="tracking-widest uppercase text-[10px] text-[#C8A34A] hidden sm:inline">
               Dubai Premier Investor Tourism & Lifestyle
             </span>
           </div>
+
           <div className="flex items-center space-x-6 text-[11px]">
-            <span className="flex items-center gap-1.5 text-slate-200 hidden md:flex">
-              <MapPin className="w-3.5 h-3.5 text-[#C8A34A]" /> The Opus, Business Bay, Dubai
+            <span className="flex items-center gap-1.5 text-slate-300 hidden md:flex font-light">
+              <MapPin className="w-3.5 h-3.5 text-[#C8A34A]" /> Downtown,Dubai
             </span>
-            <a 
-              href="tel:+971503784656" 
-              className="flex items-center gap-1.5 text-[#F7E7CE] hover:text-[#C8A34A] transition-colors"
+            <a
+              href="tel:+971503784656"
+              className="flex items-center gap-1.5 text-[#F7E7CE] hover:text-[#E5C578] transition-colors"
             >
               <Phone className="w-3.5 h-3.5 text-[#C8A34A]" />
               <span>+971 50 378 4656</span>
@@ -88,50 +138,41 @@ export default function TourismPage() {
           </div>
         </div>
 
+        {/* ================= UNIVERSAL TOP HEADER (MATCHES REAL ESTATE EXACTLY) ================= */}
         {/* ================= UNIVERSAL TOP HEADER ================= */}
-        <header className="border-b border-[#C8A34A]/25 bg-[#061813]/95 sticky top-0 z-40 backdrop-blur-md px-4 sm:px-8 lg:px-14 py-3">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-            <div className="flex items-center justify-between gap-4">
-              <button onClick={() => navigateTo("home")} className="flex items-center cursor-pointer">
-                <img 
-                  src="/logot.png" 
-                  alt="Velora Heights Tourism" 
-                  className="h-10 sm:h-12 w-auto object-contain brightness-110"
-                />
-              </button>
+        <header className="border-b border-[#C8A34A]/20 bg-[#061813]/90 sticky top-0 z-40 backdrop-blur-md px-4 sm:px-8 lg:px-14 py-4">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            {/* Logo on the Left */}
+            <button
+              onClick={() => navigateTo("home")}
+              className="flex items-center cursor-pointer shrink-0"
+            >
+              <img
+                src="/logot.png"
+                alt="Velora Heights Tourism"
+                className="h-12 w-auto object-contain brightness-110 drop-shadow-md"
+              />
+            </button>
 
-              <div className="flex items-center gap-2">
-                <Link
-                  href="/real-estate"
-                  className="gold-gradient-bg text-[#0D2B22] font-bold px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-sm text-[11px] sm:text-xs uppercase tracking-wider hover:brightness-110 transition-all flex items-center gap-1.5 shadow-md cursor-pointer"
-                >
-                  <Building className="w-3.5 h-3.5" />
-                  <span>Real Estate</span>
-                </Link>
-                <a
-                  href="https://wa.me/971503784656"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden sm:flex border border-[#C8A34A]/70 text-[#F7E7CE] bg-[#061813] hover:bg-[#C8A34A] hover:text-[#0D2B22] text-xs px-3.5 py-2.5 rounded-sm transition-all items-center gap-1.5 font-semibold"
-                >
-                  <MessageSquare className="w-3.5 h-3.5 text-[#E5C578]" />
-                  <span>WhatsApp</span>
-                </a>
-              </div>
-            </div>
-
-            <nav className="hidden sm:flex items-center gap-5 sm:gap-7 text-xs tracking-wider uppercase overflow-x-auto pb-1 sm:pb-0 scrollbar-none font-bold">
-              {(["home", "itinerary", "investor", "about", "contact"] as const).map((tab) => (
+            {/* Navigation on the Right */}
+            <nav className="flex items-center gap-6 sm:gap-8 text-xs tracking-[0.18em] uppercase font-medium">
+              {[
+                { key: "home", label: "Home" },
+                { key: "itinerary", label: "Itinerary" },
+                { key: "investor", label: "Investor Experience" },
+                { key: "about", label: "About Dubai" },
+                { key: "contact", label: "Contact" },
+              ].map(({ key, label }) => (
                 <button
-                  key={tab}
-                  onClick={() => navigateTo(tab)}
+                  key={key}
+                  onClick={() => navigateTo(key as any)}
                   className={`whitespace-nowrap pb-1 transition-all cursor-pointer ${
-                    activeTab === tab
+                    activeTab === key
                       ? "text-[#E5C578] border-b-2 border-[#C8A34A]"
-                      : "text-slate-300 hover:text-[#FFF]"
+                      : "text-slate-300 hover:text-white"
                   }`}
                 >
-                  {tab === "home" ? "Home" : tab === "investor" ? "Investor Experience" : tab === "about" ? "About Dubai" : tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  {label}
                 </button>
               ))}
             </nav>
@@ -216,7 +257,7 @@ export default function TourismPage() {
               </div>
             </div>
 
-            {/* ================= WHY UK INVESTORS CHOOSE THIS EXPERIENCE ================= */}
+            {/* Why UK Investors Choose This Experience */}
             <div className="space-y-10 text-center pt-10 border-t border-[#C8A34A]/25">
               <div className="space-y-1">
                 <h2 className="font-serif text-3xl sm:text-4xl text-[#F7E7CE] font-normal leading-tight">
@@ -228,7 +269,6 @@ export default function TourismPage() {
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto pt-4">
-                {/* 1. Experience Dubai First-Hand */}
                 <div className="flex flex-col items-center space-y-4 group">
                   <div className="w-16 h-16 rounded-full border border-[#C8A34A] bg-[#0D2B22] flex items-center justify-center text-[#E5C578] shadow-[0_0_15px_rgba(200,163,74,0.15)] group-hover:scale-105 group-hover:border-[#E5C578] transition-all">
                     <Plane className="w-7 h-7 -rotate-45" />
@@ -239,7 +279,6 @@ export default function TourismPage() {
                   </div>
                 </div>
 
-                {/* 2. Explore Opportunities in Person */}
                 <div className="flex flex-col items-center space-y-4 group">
                   <div className="w-16 h-16 rounded-full border border-[#C8A34A] bg-[#0D2B22] flex items-center justify-center text-[#E5C578] shadow-[0_0_15px_rgba(200,163,74,0.15)] group-hover:scale-105 group-hover:border-[#E5C578] transition-all">
                     <Building2 className="w-7 h-7" />
@@ -250,7 +289,6 @@ export default function TourismPage() {
                   </div>
                 </div>
 
-                {/* 3. Understand the Market */}
                 <div className="flex flex-col items-center space-y-4 group">
                   <div className="w-16 h-16 rounded-full border border-[#C8A34A] bg-[#0D2B22] flex items-center justify-center text-[#E5C578] shadow-[0_0_15px_rgba(200,163,74,0.15)] group-hover:scale-105 group-hover:border-[#E5C578] transition-all">
                     <BarChart3 className="w-7 h-7" />
@@ -261,7 +299,6 @@ export default function TourismPage() {
                   </div>
                 </div>
 
-                {/* 4. Private Investment Guidance */}
                 <div className="flex flex-col items-center space-y-4 group">
                   <div className="w-16 h-16 rounded-full border border-[#C8A34A] bg-[#0D2B22] flex items-center justify-center text-[#E5C578] shadow-[0_0_15px_rgba(200,163,74,0.15)] group-hover:scale-105 group-hover:border-[#E5C578] transition-all">
                     <User className="w-7 h-7" />
@@ -473,7 +510,7 @@ export default function TourismPage() {
               >
                 <MessageSquare className="w-6 h-6 text-[#E5C578] mx-auto" />
                 <h3 className="font-serif text-base text-[#F7E7CE] font-semibold">Chat on WhatsApp</h3>
-                <p className="text-[11px] text-slate-300">+971 50 378 4656</p>
+                <p className="text-[11px] text-slate-300">+971585844656</p>
               </a>
               <a
                 href="mailto:info@veloraheightstourism.com"
@@ -499,7 +536,7 @@ export default function TourismPage() {
           <div className="bg-[#09211A] border border-[#C8A34A]/40 rounded-sm p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xl">
             <div className="flex items-center gap-4">
               <img 
-                src="/logo.png" 
+                src="/logom.png" 
                 alt="Velora Heights Logo" 
                 className="h-10 sm:h-12 w-auto object-contain brightness-110"
               />
@@ -530,9 +567,9 @@ export default function TourismPage() {
                 <Mail className="w-3.5 h-3.5 text-[#E5C578]" />
                 <span>info@veloraheightstourism.com</span>
               </div>
-              <a href="tel:+971503784656" className="flex items-center gap-1.5 hover:text-[#E5C578] transition-colors text-[#F7E7CE]">
+              <a href="tel:+971585844656" className="flex items-center gap-1.5 hover:text-[#E5C578] transition-colors text-[#F7E7CE]">
                 <Phone className="w-3.5 h-3.5 text-[#E5C578]" />
-                <span>+971 50 378 4656</span>
+                <span>+971585844656</span>
               </a>
             </div>
             <p className="text-[10px] text-slate-400">
@@ -541,121 +578,184 @@ export default function TourismPage() {
           </div>
         </footer>
 
-        {/* ================= MODAL ================= */}
+        {/* ================= MODAL WITH GOOGLE SHEET LOGGING ================= */}
+       {/* ================= MODAL WITH GOOGLE SHEET LOGGING ================= */}
         {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
-            <div className="relative w-full max-w-lg bg-[#09211A] border border-[#C8A34A]/50 rounded-lg p-6 space-y-4 shadow-2xl my-8">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-300">
+            <div className="relative w-full max-w-lg bg-[#081f18] border border-[#C8A34A]/60 rounded-sm p-6 sm:p-8 space-y-6 shadow-[0_10px_40px_rgba(0,0,0,0.8)]">
+              {/* Close Button */}
               <button
-                onClick={() => setIsModalOpen(false)}
-                className="absolute top-4 right-4 text-slate-400 hover:text-[#FFF] transition-colors cursor-pointer"
+                onClick={handleModalClose}
+                className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
-              <div className="text-center space-y-1">
-                <h2 className="font-serif text-xl sm:text-2xl text-[#FFF]">Tell us a little about you</h2>
-                <p className="text-xs text-slate-300">We will help you plan the perfect Dubai investment experience.</p>
+
+              {/* Modal Header */}
+              <div className="text-center space-y-1.5 border-b border-[#C8A34A]/20 pb-4">
+                <span className="text-[10px] uppercase tracking-[0.35em] text-[#E5C578] font-bold block">
+                  RESERVE YOUR SEAT
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl text-white font-normal">
+                  Dubai Opportunities Closer to Home
+                </h3>
+                <p className="text-xs text-slate-300 font-light leading-relaxed">
+                  Exclusive VIP advisory. Confirmation details will be delivered via Email.
+                </p>
               </div>
-              <form onSubmit={handleSubmit} className="space-y-3 text-xs">
-                <div className="space-y-1">
-                  <label className="text-slate-200 font-medium">Full Name</label>
-                  <div className="relative">
-                    <User className="w-3.5 h-3.5 absolute left-3 top-2.5 text-slate-400" />
-                    <input
-                      required
-                      type="text"
-                      placeholder="Enter your full name"
-                      value={formData.fullName}
-                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full bg-[#061813] border border-[#C8A34A]/40 rounded px-3 py-2 pl-8 text-slate-100 focus:outline-none focus:border-[#E5C578]"
-                    />
+
+              {/* Success Confirmation Card */}
+              {formSubmitted ? (
+                <div className="py-8 text-center space-y-4 animate-in fade-in zoom-in-95 duration-300">
+                  <CheckCircle2 className="w-14 h-14 text-[#C8A34A] mx-auto" />
+                  <div className="space-y-1.5">
+                    <h4 className="font-serif text-2xl text-white">Registration Confirmed</h4>
+                    <p className="text-xs text-slate-300 font-light leading-relaxed max-w-sm mx-auto">
+                      Thank you for submitting your details. Your registration has been saved to our sheet, and our advisory team will follow up directly.
+                    </p>
                   </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="space-y-1">
-                    <label className="text-slate-200 font-medium">Email Address</label>
-                    <input
-                      required
-                      type="email"
-                      placeholder="you@example.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-[#061813] border border-[#C8A34A]/40 rounded px-3 py-2 text-slate-100 focus:outline-none focus:border-[#E5C578]"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-slate-200 font-medium">WhatsApp Number</label>
-                    <input
-                      required
-                      type="tel"
-                      placeholder="+44 7123 456789"
-                      value={formData.whatsapp}
-                      onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
-                      className="w-full bg-[#061813] border border-[#C8A34A]/40 rounded px-3 py-2 text-slate-100 focus:outline-none focus:border-[#E5C578]"
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="space-y-1">
-                    <label className="text-slate-200 font-medium">Country of Residence</label>
-                    <select
-                      value={formData.country}
-                      onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                      className="w-full bg-[#061813] border border-[#C8A34A]/40 rounded px-3 py-2 text-slate-100 focus:outline-none focus:border-[#E5C578]"
-                    >
-                      <option>United Kingdom</option>
-                      <option>United Arab Emirates</option>
-                      <option>United States</option>
-                      <option>India</option>
-                      <option>Europe</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-slate-200 font-medium">Budget Range (GBP)</label>
-                    <select
-                      value={formData.budget}
-                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      className="w-full bg-[#061813] border border-[#C8A34A]/40 rounded px-3 py-2 text-slate-100 focus:outline-none focus:border-[#E5C578]"
-                    >
-                      <option>£250k - £500k</option>
-                      <option>£500k - £1M</option>
-                      <option>£1M - £3M</option>
-                      <option>£3M+</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="space-y-1">
-                  <label className="text-slate-200 font-medium">Preferred Travel Date</label>
-                  <input
-                    type="date"
-                    value={formData.date}
-                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    className="w-full bg-[#061813] border border-[#C8A34A]/40 rounded px-3 py-2 text-slate-100 focus:outline-none focus:border-[#E5C578]"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-slate-200 font-medium">Optional Message</label>
-                  <textarea
-                    rows={2}
-                    placeholder="Tell us what you'd like to achieve on your trip..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-[#061813] border border-[#C8A34A]/40 rounded px-3 py-2 text-slate-100 focus:outline-none focus:border-[#E5C578]"
-                  />
-                </div>
-                <div className="flex gap-2 pt-2">
                   <button
-                    type="submit"
-                    className="flex-1 gold-gradient-bg text-[#0D2B22] font-bold py-2.5 rounded-sm hover:brightness-110 transition-all cursor-pointer shadow-lg"
+                    type="button"
+                    onClick={handleModalClose}
+                    className="bg-[#DFC07B] hover:bg-[#ebd296] text-[#071713] font-bold text-xs uppercase tracking-[0.2em] px-8 py-3 rounded-sm transition-all shadow-md cursor-pointer mt-2"
                   >
-                    Send Enquiry
+                    Done
                   </button>
                 </div>
-                <p className="text-[10px] text-center text-slate-300 flex items-center justify-center gap-1 pt-1 font-medium">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#E5C578]" />
-                  Your information is confidential and secure.
-                </p>
-              </form>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+                  {/* Full Name */}
+                  <div className="space-y-1">
+                    <label className="text-slate-200 font-medium tracking-wide">
+                      Full Name *
+                    </label>
+                    <div className="relative">
+                      <User className="w-4 h-4 text-[#C8A34A] absolute left-3 top-3 pointer-events-none" />
+                      <input
+                        required
+                        type="text"
+                        placeholder="Enter your name"
+                        value={formData.fullName}
+                        onChange={(e) =>
+                          setFormData({ ...formData, fullName: e.target.value })
+                        }
+                        className="w-full bg-[#051410] border border-[#C8A34A]/30 rounded-sm pl-9 pr-3.5 py-2.5 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-[#E5C578] transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email & WhatsApp Row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="space-y-1">
+                      <label className="text-slate-200 font-medium tracking-wide">
+                        Email Address *
+                      </label>
+                      <div className="relative">
+                        <Mail className="w-4 h-4 text-[#C8A34A] absolute left-3 top-3 pointer-events-none" />
+                        <input
+                          required
+                          type="email"
+                          placeholder="you@domain.com"
+                          value={formData.email}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
+                          className="w-full bg-[#051410] border border-[#C8A34A]/30 rounded-sm pl-9 pr-3.5 py-2.5 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-[#E5C578] transition-colors"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-slate-200 font-medium tracking-wide">
+                        WhatsApp Number *
+                      </label>
+                      <div className="relative">
+                        <Phone className="w-4 h-4 text-[#C8A34A] absolute left-3 top-3 pointer-events-none" />
+                        <input
+                          required
+                          type="tel"
+                          placeholder="+44 7123 456789"
+                          value={formData.whatsapp}
+                          onChange={(e) =>
+                            setFormData({ ...formData, whatsapp: e.target.value })
+                          }
+                          className="w-full bg-[#051410] border border-[#C8A34A]/30 rounded-sm pl-9 pr-3.5 py-2.5 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-[#E5C578] transition-colors"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Country & Target Investment Row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="space-y-1">
+                      <label className="text-slate-200 font-medium tracking-wide">
+                        Country of Residence
+                      </label>
+                      <select
+                        value={formData.country}
+                        onChange={(e) =>
+                          setFormData({ ...formData, country: e.target.value })
+                        }
+                        className="w-full bg-[#051410] border border-[#C8A34A]/30 rounded-sm px-3.5 py-2.5 text-slate-100 focus:outline-none focus:border-[#E5C578] transition-colors"
+                      >
+                        <option>United Kingdom</option>
+                        <option>United Arab Emirates</option>
+                        <option>India</option>
+                        <option>United States</option>
+                        <option>Europe</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-slate-200 font-medium tracking-wide">
+                        Target Investment
+                      </label>
+                      <select
+                        value={formData.budget}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            budget: e.target.value,
+                          })
+                        }
+                        className="w-full bg-[#051410] border border-[#C8A34A]/30 rounded-sm px-3.5 py-2.5 text-slate-100 focus:outline-none focus:border-[#E5C578] transition-colors"
+                      >
+                        <option>Under AED 1,000,000</option>
+                        <option>AED 1M - 2M (Golden Visa Entry)</option>
+                        <option>AED 2M - 5M</option>
+                        <option>AED 5M+</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Submit Action */}
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-[#DFC07B] hover:bg-[#ebd296] text-[#071713] font-bold py-3.5 rounded-sm uppercase tracking-[0.2em] transition-all duration-300 shadow-[0_4px_20px_rgba(200,163,74,0.3)] cursor-pointer mt-2 disabled:opacity-50 flex items-center justify-center gap-2"
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin text-[#071713]" />
+                        <span>Securing Your Seat...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Confirm Registration</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+
+                  {/* Privacy Guarantee */}
+                  <p className="text-[10px] text-center text-slate-400 flex items-center justify-center gap-1.5 pt-1 font-light">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#E5C578]" />
+                    <span>Your contact information is strictly confidential.</span>
+                  </p>
+                </form>
+              )}
             </div>
           </div>
         )}

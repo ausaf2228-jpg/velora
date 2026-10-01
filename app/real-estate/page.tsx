@@ -37,14 +37,14 @@ export default function RealEstatePage() {
           </div>
           <div className="flex items-center space-x-6 text-[11px]">
             <span className="flex items-center gap-1.5 text-slate-200">
-              <MapPin className="w-3.5 h-3.5 text-[#C8A34A]" /> The Opus, Business Bay, Dubai
+              <MapPin className="w-3.5 h-3.5 text-[#C8A34A]" />Downtown,Dubai
             </span>
             <a 
-              href="tel:+971503784656" 
+              href="tel:+971585844656" 
               className="flex items-center gap-1.5 text-[#F7E7CE] hover:text-[#C8A34A] transition-colors"
             >
               <Phone className="w-3.5 h-3.5 text-[#C8A34A]" />
-              <span>+971 50 378 4656</span>
+              <span>+971585844656</span>
             </a>
           </div>
         </div>
@@ -262,7 +262,7 @@ export default function RealEstatePage() {
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-3">
               <img 
-                src="/logo.png" 
+                src="/logom.png" 
                 alt="Velora Heights Logo" 
                 className="h-12 w-auto object-contain brightness-110"
               />
@@ -270,12 +270,12 @@ export default function RealEstatePage() {
             </div>
             <div>
               <h4 className="text-[#F7E7CE] font-bold uppercase tracking-wider mb-3 text-[11px]">Office</h4>
-              <p className="font-light">The Opus by Omniyat, Business Bay, Dubai, UAE</p>
+              <p className="font-light">Downtown,Dubai</p>
             </div>
             <div>
               <h4 className="text-[#F7E7CE] font-bold uppercase tracking-wider mb-3 text-[11px]">Direct Contact</h4>
               <p className="font-light">muhammedhuzaif1@gmail.com</p>
-              <p className="font-light text-[#E5C578]">+971 50 378 4656</p>
+              <p className="font-light text-[#E5C578]">+971585844656</p>
             </div>
             <div>
               <h4 className="text-[#F7E7CE] font-bold uppercase tracking-wider mb-3 text-[11px]">Legal</h4>
