@@ -90,7 +90,7 @@ export default function ContactPage() {
           </div>
           <div className="flex items-center space-x-6 text-[11px]">
             <span className="flex items-center gap-1.5 text-slate-200 hidden md:flex">
-              <MapPin className="w-3.5 h-3.5 text-[#C8A34A]" /> Downtown,Dubai
+              <MapPin className="w-3.5 h-3.5 text-[#C8A34A]" /> Downtown,Dubai,UAE
             </span>
             <a
               href={`tel:+${WHATSAPP_NUMBER}`}
@@ -201,7 +201,7 @@ export default function ContactPage() {
               <MapPin className="w-5 h-5 text-[#E5C578] mx-auto" />
               <h4 className="text-xs uppercase tracking-wider text-[#F7E7CE] font-semibold">Location</h4>
               <p className="text-[11px] text-slate-300 font-light leading-relaxed">
-                Downtown,Dubai
+                Downtown,Dubai,UAE
               </p>
             </div>
             <div className="space-y-1.5 pt-4 md:pt-0">
