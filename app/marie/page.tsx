@@ -129,10 +129,13 @@ export default function LandingPage1() {
 
     try {
       const res = await fetch("/api/webinar-register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    ...formData,
+    source: "webinar",
+  }),
+});
 
       if (!res.ok) {
         throw new Error("Failed to record entry");

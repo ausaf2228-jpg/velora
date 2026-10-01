@@ -8,7 +8,6 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    // Send as text/plain to prevent CORS preflight & proxy drops on Google Script 302 redirect
     const response = await fetch(GOOGLE_SCRIPT_WEBHOOK_URL, {
       method: "POST",
       headers: {
@@ -20,11 +19,11 @@ export async function POST(req: Request) {
     });
 
     const result = await response.text();
-    console.log("Sheet webhook response:", result);
+    console.log("Google Apps Script response:", result);
 
     return NextResponse.json({ success: true });
   } catch (error: any) {
-    console.error("Registration error:", error);
+    console.error("Submission routing error:", error);
     return NextResponse.json(
       { success: false, error: error.message },
       { status: 500 }

@@ -67,16 +67,17 @@ export default function TourismPage() {
     try {
       // Direct call to your Next.js Google Sheet proxy route
       const res = await fetch("/api/webinar-register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: formData.fullName,
-          email: formData.email,
-          whatsapp: formData.whatsapp,
-          country: formData.country,
-          investmentBudget: `${formData.budget} (${formData.intent}${formData.date ? `, Date: ${formData.date}` : ""}${formData.message ? `, Note: ${formData.message}` : ""})`,
-        }),
-      });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    fullName: formData.fullName,
+    email: formData.email,
+    whatsapp: formData.whatsapp,
+    country: formData.country,
+    investmentBudget: `${formData.budget} (${formData.intent}${formData.date ? `, Date: ${formData.date}` : ""}${formData.message ? `, Note: ${formData.message}` : ""})`,
+    source: "tourism",
+  }),
+});
 
       if (!res.ok) {
         throw new Error("Failed to record enquiry");
