@@ -33,7 +33,7 @@ import {
 } from "lucide-react";
 import LuxuryBackground from "@/components/LuxuryBackground";
 
-const WHATSAPP_NUMBER = "971503784656";
+const WHATSAPP_NUMBER = "971585844656";
 
 interface TeamMember {
   name: string;
