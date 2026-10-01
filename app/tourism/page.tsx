@@ -130,11 +130,11 @@ export default function TourismPage() {
               <MapPin className="w-3.5 h-3.5 text-[#C8A34A]" /> Downtown,Dubai
             </span>
             <a
-              href="tel:+971503784656"
+              href="tel:+971585844656"
               className="flex items-center gap-1.5 text-[#F7E7CE] hover:text-[#E5C578] transition-colors"
             >
               <Phone className="w-3.5 h-3.5 text-[#C8A34A]" />
-              <span>+971 50 378 4656</span>
+              <span>+971585844656</span>
             </a>
           </div>
         </div>

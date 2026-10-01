@@ -87,7 +87,7 @@ const TEAM_MEMBERS: TeamMember[] = [
       { icon: Compass, label: "Guest Relations & Hospitality" },
       { icon: FileCheck, label: "Administrative Coordination" },
     ],
-    languages: ["English", "Tamil", "Sinhala", "Chinese"],
+    languages: ["English", "Tamil", "Sinhala"],
   },
 ];
 
