@@ -35,7 +35,7 @@ import {
 import LuxuryBackground from "@/components/LuxuryBackground";
 
 const WHATSAPP_NUMBER = "971585844656";
-const CONTACT_EMAIL = "info@veloraheightstourism.ae";
+const CONTACT_EMAIL = "info@veloraheights.ae";
 
 export default function TourismPage() {
   const [activeTab, setActiveTab] = useState<"home" | "itinerary" | "investor" | "about" | "contact">("home");

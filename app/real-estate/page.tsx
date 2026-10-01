@@ -274,7 +274,7 @@ export default function RealEstatePage() {
             </div>
             <div>
               <h4 className="text-[#F7E7CE] font-bold uppercase tracking-wider mb-3 text-[11px]">Direct Contact</h4>
-              <p className="font-light">info@veloraheightstourism.ae</p>
+              <p className="font-light">info@veloraheights.ae</p>
               <p className="font-light text-[#E5C578]">+971585844656</p>
             </div>
             <div>

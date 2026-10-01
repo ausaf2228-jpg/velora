@@ -168,7 +168,7 @@ export default function ContactPage() {
 
             {/* Email */}
             <a
-              href="mailto:info@veloraheightstourism.ae"
+              href="mailto:info@veloraheights.ae"
               className="bg-[#09211A] border border-[#C8A34A]/40 hover:border-[#E5C578] p-7 rounded-sm space-y-3 transition-all duration-300 shadow-xl group text-center"
             >
               <div className="w-12 h-12 rounded-full border border-[#C8A34A] bg-[#061813] flex items-center justify-center text-[#E5C578] mx-auto group-hover:scale-105 transition-transform">
@@ -177,7 +177,7 @@ export default function ContactPage() {
               <h3 className="font-serif text-lg text-[#F7E7CE] font-semibold group-hover:text-white transition-colors">
                 Email Us
               </h3>
-              <p className="text-xs text-slate-300 font-mono">info@veloraheightstourism.ae</p>
+              <p className="text-xs text-slate-300 font-mono">info@veloraheights.ae</p>
               <span className="inline-flex items-center gap-1 text-[11px] text-[#E5C578] font-semibold pt-1">
                 <span>Send Brief</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -234,7 +234,7 @@ export default function ContactPage() {
               </div>
               <div className="flex items-center gap-1.5">
                 <Mail className="w-3.5 h-3.5 text-[#E5C578]" />
-                <span>info@veloraheightstourism.ae</span>
+                <span>info@veloraheights.ae</span>
               </div>
               <a
                 href={`tel:+${WHATSAPP_NUMBER}`}
