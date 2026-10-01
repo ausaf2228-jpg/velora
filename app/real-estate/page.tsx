@@ -16,7 +16,7 @@ import Link from 'next/link';
 import LuxuryBackground from '@/components/LuxuryBackground';
 import { INSIGHTS_DATA } from '../data/insights';
 
-const whatsappUrl = "https://wa.me/971503784656?text=Hello%20Velora%20Heights,%20I%20would%20like%20to%20inquire%20about%20property%20investment%20opportunities.";
+const whatsappUrl = "https://wa.me/971585844656?text=Hello%20Velora%20Heights,%20I%20would%20like%20to%20inquire%20about%20property%20investment%20opportunities.";
 
 export default function RealEstatePage() {
   return (
@@ -274,7 +274,7 @@ export default function RealEstatePage() {
             </div>
             <div>
               <h4 className="text-[#F7E7CE] font-bold uppercase tracking-wider mb-3 text-[11px]">Direct Contact</h4>
-              <p className="font-light">muhammedhuzaif1@gmail.com</p>
+              <p className="font-light">info@veloraheightstourism.ae</p>
               <p className="font-light text-[#E5C578]">+971585844656</p>
             </div>
             <div>
